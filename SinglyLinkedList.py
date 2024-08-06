@@ -14,7 +14,15 @@ class SinglyLinkedList:
         self.tail = None
         self.size = 0
         
-        
+    def index_handler(self, index):
+        if index >= self.size:
+            raise Exception("Index out of range")
+        elif index < 0:
+            index = self.size + index
+            return index 
+        else:
+            return index
+    
     def append(self, data):
         node = Node(data)
         if self.tail:
@@ -27,9 +35,13 @@ class SinglyLinkedList:
         
     
     def insert_at(self, data, index):
+        index = self.index_handler(index)
+        if index == self.size:
+            self.append(data)
+            return
+        node = Node(data)
         current = self.head
         prev = self.head
-        node = Node(data)
         count = 0
         while current :
             if index == 0:
@@ -45,8 +57,6 @@ class SinglyLinkedList:
             count += 1
             prev = current 
             current = current.next
-        if count < index:
-            raise Exception("List index out of range")
 
         
     def insert_before(self, data, target):
@@ -70,6 +80,7 @@ class SinglyLinkedList:
         if self.head is None:
             raise Exception("Nothing to delete")
         self.head = self.head.next
+        self.size -= 1
             
         
     def delete_last(self):
@@ -102,6 +113,7 @@ class SinglyLinkedList:
         
         
     def delete_at(self, index):
+        index = self.index_handler(index)
         counter = 0
         current = self.head
         prev = self.head
@@ -123,6 +135,7 @@ class SinglyLinkedList:
     def clear(self):
         self.tail = None
         self.head = None
+        self.size = 0
 
 
     def iter(self):
@@ -139,6 +152,7 @@ class SinglyLinkedList:
                 return True
         return False
     
+    
     def display(self):
         current = self.head
         while current:
@@ -154,16 +168,25 @@ if __name__ == '__main__':
 
     numbers = SinglyLinkedList()
     
-    for i in range(1, 10):
+    for i in range(0, 3):
         numbers.append(i)
-     
-       
-    numbers.display()
-
-    numbers.delete_at(1)
-
-    numbers.display()
     
-    numbers.insert_at(0, 1)
-
+    numbers.display()
+    numbers.append(5)
+    numbers.display()
+    numbers.insert_before(3, 5)
+    numbers.display()
+    numbers.delete_first()
+    numbers.display()
+    numbers.delete_last()
+    numbers.display()
+    numbers.delete(2)
+    numbers.display()
+    numbers.insert_at(4, -2)
+    numbers.display()
+    numbers.delete_at(2)
+    numbers.display()
+    numbers.display()
+    print(numbers.search(4))
+    numbers.clear()
     numbers.display()
