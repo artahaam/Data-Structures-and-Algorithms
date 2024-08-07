@@ -60,9 +60,13 @@ class SinglyLinkedList:
 
         
     def insert_before(self, data, target):
+        node = Node(data)
+        if self.head.data == target:
+            node.next = self.head
+            self.head = node
+            return 
         current = self.head
         prev = self.head
-        node = Node(data)
         flag = False
         while current:
             if current.data == target:
@@ -73,7 +77,7 @@ class SinglyLinkedList:
             prev = current
             current = current.next
         if not flag:
-            raise Exception("The target does not exist")
+            raise Exception("Target not found")
         
         
     def delete_first(self):
@@ -186,7 +190,9 @@ if __name__ == '__main__':
     numbers.display()
     numbers.delete_at(2)
     numbers.display()
+    numbers.insert_before(3, 5)
     numbers.display()
+
     print(numbers.search(4))
-    numbers.clear()
-    numbers.display()
+    # numbers.clear()
+    # numbers.display()
