@@ -38,6 +38,7 @@ class SinglyLinkedList:
         index = self.index_handler(index)
         if index == self.size:
             self.append(data)
+            self.size += 1
             return
         node = Node(data)
         current = self.head
@@ -64,6 +65,7 @@ class SinglyLinkedList:
         if self.head.data == target:
             node.next = self.head
             self.head = node
+            self.size += 1
             return 
         current = self.head
         prev = self.head
@@ -74,6 +76,7 @@ class SinglyLinkedList:
                 prev.next = node
                 flag = True
                 self.size += 1
+                return
             prev = current
             current = current.next
         if not flag:
@@ -118,6 +121,11 @@ class SinglyLinkedList:
         
     def delete_at(self, index):
         index = self.index_handler(index)
+        if index == self.size-1:
+            self.tail = None
+            self.head = None
+            self.size = 0
+            return
         counter = 0
         current = self.head
         prev = self.head
@@ -125,6 +133,7 @@ class SinglyLinkedList:
             if counter == index:
                 if current == self.head:
                     self.head = self.head.next
+                    self.size -= 1
                 else:
                     prev.next = current.next
                     self.size -= 1
@@ -148,7 +157,7 @@ class SinglyLinkedList:
             yield val
 
 
-    def search(self, data):
+    def contains(self, data):
         for node in self.iter():
             if data == node:
                 return True
@@ -159,7 +168,7 @@ class SinglyLinkedList:
         current = self.head
         while current:
             if current.next == None:
-                print(current.data)
+                print(current.data,)
             else:
                 print(current.data, end=', ')
             current = current.next
@@ -184,12 +193,20 @@ if __name__ == '__main__':
     numbers.display()
     numbers.delete(2)
     numbers.display()
-    numbers.insert_at(4, -2)
+    numbers.insert_at(4, -2) 
     numbers.display()
     numbers.delete_at(2)
     numbers.display()
     numbers.insert_before(3, 1)
     numbers.display()
-    print(numbers.search(4))
-    numbers.delete_at(1)
+    print(numbers.contains(4))
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.insert_before(0, 3)
+    numbers.display()
+    numbers.insert_at(7, -2)
     numbers.display()
