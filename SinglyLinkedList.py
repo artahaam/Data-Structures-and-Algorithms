@@ -35,12 +35,17 @@ class SinglyLinkedList:
         
     
     def insert_at(self, data, index):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            self.tail = node
+            self.size += 1
+            return
         index = self.index_handler(index)
         if index == self.size:
             self.append(data)
             self.size += 1
             return
-        node = Node(data)
         current = self.head
         prev = self.head
         count = 0
@@ -121,7 +126,7 @@ class SinglyLinkedList:
         
     def delete_at(self, index):
         index = self.index_handler(index)
-        if index == self.size-1:
+        if  index == 0 and self.size ==1:
             self.tail = None
             self.head = None
             self.size = 0
@@ -165,15 +170,18 @@ class SinglyLinkedList:
     
     
     def display(self):
-        current = self.head
-        while current:
-            if current.next == None:
-                print(current.data,)
-            else:
-                print(current.data, end=', ')
-            current = current.next
-            
-
+        if self.size == 0:
+            print()
+            return
+        else:
+            current = self.head
+            while current:
+                if current.next == None:
+                    print(current.data)
+                else:
+                    print(current.data, end=', ')
+                current = current.next
+        
 
 if __name__ == '__main__':
 
@@ -204,9 +212,25 @@ if __name__ == '__main__':
     numbers.display()
     numbers.delete_at(0)
     numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
     numbers.insert_before(0, 3)
     numbers.display()
     numbers.insert_at(7, -2)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.delete_at(0)
+    numbers.display()
+    numbers.insert_at(1,0)
+    numbers.display()
+    numbers.delete_at(0)
     numbers.display()
