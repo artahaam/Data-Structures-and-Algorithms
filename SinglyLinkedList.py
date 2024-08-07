@@ -16,7 +16,7 @@ class SinglyLinkedList:
         
     def index_handler(self, index):
         if index >= self.size:
-            raise Exception("Index out of range")
+            raise Exception("Index out of range handler")
         elif index < 0:
             index = self.size + index
             return index 
@@ -132,9 +132,7 @@ class SinglyLinkedList:
             prev = current
             current = current.next
             counter += 1
-        if counter < index:
-            raise Exception("Index out of range")
-                    
+
         
     def clear(self):
         self.tail = None
@@ -172,7 +170,7 @@ if __name__ == '__main__':
 
     numbers = SinglyLinkedList()
     
-    for i in range(0, 3):
+    for i in range(0, 10):
         numbers.append(i)
     
     numbers.display()
@@ -190,9 +188,8 @@ if __name__ == '__main__':
     numbers.display()
     numbers.delete_at(2)
     numbers.display()
-    numbers.insert_before(3, 5)
+    numbers.insert_before(3, 1)
     numbers.display()
-
     print(numbers.search(4))
-    # numbers.clear()
-    # numbers.display()
+    numbers.delete_at(1)
+    numbers.display()
