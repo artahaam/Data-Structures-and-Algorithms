@@ -16,7 +16,7 @@ class SinglyLinkedList:
         
     def index_handler(self, index):
         if index >= self.size:
-            raise Exception("Index out of range handler")
+            raise Exception("Index out of range")
         elif index < 0:
             index = self.size + index
             return index 
