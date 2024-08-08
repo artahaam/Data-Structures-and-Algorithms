@@ -15,6 +15,16 @@ class CircularLinkedList:
         self.size = 0
     
     
+    def index_handler(self, index):
+        if index >= self.size:
+            raise Exception("Index out of range")
+        elif index < 0:
+            index = self.size + index
+            return index 
+        else:
+            return index
+    
+    
     def append(self, data):
         node = Node(data)
         if self.tail:
@@ -51,6 +61,39 @@ class CircularLinkedList:
             raise Exception("target not found")
 
     
+    def delete_at(self, index):
+        index = self.index_handler(index)
+        if  index == 0 and self.size == 1:
+            self.tail = None
+            self.head = None
+            self.size = 0
+            return
+        current = self.head
+        prev = self.head
+        counter = 0
+        while current==prev or prev != self.tail:
+            if counter == index:
+                if current == self.head:
+                    self.head = self.head.next
+                    self.size -= 1
+                # elif current == self.tail:
+                #     prev.next = self.head
+                #     self.size -=1 
+                else:
+                    prev.next = current.next
+                    self.size -=1 
+                return
+            prev = current
+            current = current.next
+            counter += 1
+
+                    # self.tail.next = self.head
+
+        
+            
+        
+        
+    
     def iter(self):
         current = self.head
         while current:
@@ -78,9 +121,11 @@ class CircularLinkedList:
                 
 nums = CircularLinkedList()
 
-for i in range(5):
+for i in range(10):
     nums.append(i)
 
 nums.display()
-nums.delete(1)
+# nums.delete(1)
+nums.display()
+nums.delete_at(10)
 nums.display()
