@@ -141,22 +141,23 @@ class CircularLinkedList:
                 counter += 1
 
                 
-                
-nums = CircularLinkedList()
+if __name__ == '__main__':
+        
+    nums = CircularLinkedList()
 
-for i in range(10):
-    nums.append(i)
+    for i in range(10):
+        nums.append(i)
 
-nums.display()
-nums.delete(1)
-nums.display()
-nums.delete_at(1)
-nums.display()
-nums.insert(10, 0)
-nums.display()
-nums.insert(10, 8)
-nums.display()
-nums.insert(10, 9)
-nums.display()
-nums.insert(10, 4)
-nums.display()
+    nums.display()
+    nums.delete(1)
+    nums.display()
+    nums.delete_at(1)
+    nums.display()
+    nums.insert(10, 0)
+    nums.display()
+    nums.insert(10, 8)
+    nums.display()
+    nums.insert(10, 9)
+    nums.display()
+    nums.insert(10, 4)
+    nums.display()
