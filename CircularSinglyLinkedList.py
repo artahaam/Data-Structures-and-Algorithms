@@ -76,9 +76,6 @@ class CircularLinkedList:
                 if current == self.head:
                     self.head = self.head.next
                     self.size -= 1
-                # elif current == self.tail:
-                #     prev.next = self.head
-                #     self.size -=1 
                 else:
                     prev.next = current.next
                     self.size -=1 
@@ -86,14 +83,8 @@ class CircularLinkedList:
             prev = current
             current = current.next
             counter += 1
-
-                    # self.tail.next = self.head
-
-        
-            
-        
-        
-    
+                
+                
     def iter(self):
         current = self.head
         while current:
