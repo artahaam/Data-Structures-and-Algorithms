@@ -29,6 +29,7 @@ class CircularLinkedList:
     def append(self, data):
         node = Node(data)
         if self.tail:
+            node.prev = self.tail
             self.tail.next = node
             self.tail = node
             self.tail.next = self.head
@@ -36,4 +37,32 @@ class CircularLinkedList:
             self.head = node
             self.tail = node
             self.tail.next = self.head
+            self.head.next = self.tail
         self.size += 1
+        
+
+    def display(self):
+        if self.size == 0:
+            print()
+            return
+        else:
+            current = self.head
+            prev = self.head
+            counter = 0
+            while  prev != self.tail:
+                if current.next == self.head:
+                    print(current.data)
+                else:
+                    print(current.data, end=', ')
+                prev = current
+                current = current.next
+                counter += 1
+
+
+if __name__ == '__main__':
+    
+    nums = CircularLinkedList()
+    for i in range(10):
+        nums.append(i)
+        
+    nums.display()
