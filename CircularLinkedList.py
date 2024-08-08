@@ -28,6 +28,29 @@ class CircularLinkedList:
         self.size += 1
     
     
+    def delete(self, data):
+        current = self.head
+        prev = self.head
+        deleted = False
+        while prev == current or prev != self.tail:
+            if current.data == data:
+                if current == self.head:
+                    self.tail.next = current.next
+                    self.head = current.next
+                elif current == self.tail:
+                    prev.next = self.head
+                    self.tail = prev
+                else:
+                    prev.next = current.next
+                self.size -= 1
+                deleted = True
+                return
+            prev = current
+            current = current.next
+        if not deleted:
+            raise Exception("target not found")
+
+    
     def iter(self):
         current = self.head
         while current:
@@ -50,6 +73,7 @@ class CircularLinkedList:
                     print(current.data, end=', ')
                 current = current.next
                 counter += 1
+            print()
                 
                 
 nums = CircularLinkedList()
@@ -57,4 +81,6 @@ nums = CircularLinkedList()
 for i in range(5):
     nums.append(i)
 
+nums.display()
+nums.delete(1)
 nums.display()
