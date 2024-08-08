@@ -5,7 +5,7 @@ class Node:
         self.prev = prev
         
         
-    def __str__(self)
+    def __str__(self):
         return self.data
 
 
