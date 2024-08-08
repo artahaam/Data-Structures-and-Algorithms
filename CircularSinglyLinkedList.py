@@ -10,8 +10,8 @@ class Node:
 
 class CircularLinkedList:
     def __init__ (self):
-        self.tail = None
         self.head = None
+        self.tail = None
         self.size = 0
     
     
@@ -30,7 +30,7 @@ class CircularLinkedList:
         if self.tail:
             self.tail.next = node
             self.tail = node
-            node.next = self.head
+            self.tail.next = self.head
         else:
             self.head = node
             self.tail = node
@@ -71,10 +71,11 @@ class CircularLinkedList:
         current = self.head
         prev = self.head
         counter = 0
-        while current==prev or prev != self.tail:
+        while current == prev or prev != self.tail:
             if counter == index:
                 if current == self.head:
                     self.head = self.head.next
+                    self.tail.next = self.head
                     self.size -= 1
                 else:
                     prev.next = current.next
@@ -84,6 +85,35 @@ class CircularLinkedList:
             current = current.next
             counter += 1
                 
+    def insert(self, data, index):
+        index = self.index_handler(index)
+        current = self.head
+        prev = self.head
+        node = Node(data)
+        counter = 0
+        while current == prev or prev != self.tail:
+            if counter == index:
+                if current == self.head:
+                    self.tail.next = node
+                    self.head = node
+                    self.head.next = current
+                    self.size += 1
+                    return
+                elif current == self.tail:
+                    self.tail.next = node
+                    self.tail = node
+                    self.tail.next = self.head
+                    self.size += 1
+                    return
+                else:
+                    prev.next = node 
+                    node.next = current
+                    self.size += 1
+                    return            
+            prev = current
+            current = current.next
+            counter += 1
+
                 
     def iter(self):
         current = self.head
@@ -99,15 +129,17 @@ class CircularLinkedList:
             return
         else:
             current = self.head
+            prev = self.head
             counter = 0
-            while counter < self.size:
-                if current.next == None:
+            while  prev != self.tail:
+                if current.next == self.head:
                     print(current.data)
                 else:
                     print(current.data, end=', ')
+                prev = current
                 current = current.next
                 counter += 1
-            print()
+
                 
                 
 nums = CircularLinkedList()
@@ -116,7 +148,15 @@ for i in range(10):
     nums.append(i)
 
 nums.display()
-# nums.delete(1)
+nums.delete(1)
 nums.display()
-nums.delete_at(10)
+nums.delete_at(1)
+nums.display()
+nums.insert(10, 0)
+nums.display()
+nums.insert(10, 8)
+nums.display()
+nums.insert(10, 9)
+nums.display()
+nums.insert(10, 4)
 nums.display()
