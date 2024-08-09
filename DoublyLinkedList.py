@@ -126,13 +126,14 @@ class DoublyLinkedList:
         
     def delete_at(self, index):
         index = self.index_handler(index)
-        if  index == 0 and self.size ==1:
+        if  index == 0 and self.size == 1:
             self.head = None
+            self.tail = None
             self.size -= 1
             return
         elif index == self.size-1:
-            self.tail = self.tail.prev
             self.tail.next = None
+            self.tail = self.tail.prev
             self.size -= 1
         else:
             current = self.head
@@ -221,4 +222,15 @@ if __name__ == '__main__':
     nums.delete_at(1)
     nums.display()
     nums.delete_at(0)
+    nums.display()
+    nums.append(1)
+    nums.display()
+    nums.append(2)
+    nums.append(3)
+    nums.display()
+    nums.delete(1)
+    nums.display()
+    nums.delete(3)
+    nums.display()
+    nums.delete(2)
     nums.display()
