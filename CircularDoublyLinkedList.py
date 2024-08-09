@@ -40,6 +40,36 @@ class CircularLinkedList:
             self.head.next = self.tail
         self.size += 1
         
+        
+    
+    def delete(self, data):
+        current = self.head
+        deleted = False
+        if current is None:
+            raise Exception("empty list")
+        elif current.data == data:
+            self.head.prev = self.tail
+            self.head = current.next
+            self.tail.next = self.head
+            deleted = True
+        elif self.tail.data == data:
+            self.tail = self.tail.prev
+            self.tail.next = self.head
+            self.head.prev = self.tail
+            deleted = True
+        else:
+            while current != self.tail:
+                if current.data == data:
+                    current.prev.next = current.next
+                    current.next.prev = current.prev
+                    deleted = True
+                current = current.next
+        if deleted is False:
+            raise Exception("target not found")
+        else:
+            self.size -= 1
+        return
+    
 
     def display(self):
         if self.size == 0:
@@ -65,4 +95,10 @@ if __name__ == '__main__':
     for i in range(10):
         nums.append(i)
         
+    nums.display()
+    nums.delete(1)
+    nums.display()
+    nums.delete(2)
+    nums.display()
+    nums.delete(9)
     nums.display()
