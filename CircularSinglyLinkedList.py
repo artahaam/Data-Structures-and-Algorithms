@@ -129,14 +129,12 @@ class CircularLinkedList:
             return
         else:
             current = self.head
-            prev = self.head
             counter = 0
-            while  prev != self.tail:
+            while  counter < self.size:
                 if current.next == self.head:
                     print(current.data)
                 else:
                     print(current.data, end=', ')
-                prev = current
                 current = current.next
                 counter += 1
 
@@ -160,4 +158,21 @@ if __name__ == '__main__':
     nums.insert(10, 9)
     nums.display()
     nums.insert(10, 4)
+    nums.display()
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.delete_at(-1)
+    nums.display()
+    nums.delete_at(-1)
+    nums.display()
+    nums.display()
+    nums.append(1)
     nums.display()

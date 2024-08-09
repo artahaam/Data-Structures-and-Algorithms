@@ -70,6 +70,40 @@ class CircularLinkedList:
             self.size -= 1
         return
     
+    
+    def delete_at(self, index):
+        index = self.index_handler(index)
+        if  index == 0 and self.size == 1:
+            self.tail = None
+            self.head = None
+            self.size = 0
+            return
+        current = self.head
+        prev = self.head
+        counter = 0
+        while current == prev or prev != self.tail:
+            if counter == index:
+                if current == self.head:
+                    self.head = self.head.next
+                    self.tail.next = self.head
+                    self.size -= 1
+                elif current == self.tail:
+                    prev.next = self.head
+                    self.tail = prev
+                    self.tail.next = self.head
+                    self.head.prev = self.tail
+                    # self.head.prev = self.tail
+                    # # self.tail.next = self.head
+                else:
+                    current.next.prev = prev
+                    prev.next = current.next
+                    self.size -=1 
+                return
+            prev = current
+            current = current.next
+            counter += 1
+
+
 
     def display(self):
         if self.size == 0:
@@ -77,14 +111,12 @@ class CircularLinkedList:
             return
         else:
             current = self.head
-            prev = self.head
             counter = 0
-            while  prev != self.tail:
+            while  counter < self.size:
                 if current.next == self.head:
                     print(current.data)
                 else:
                     print(current.data, end=', ')
-                prev = current
                 current = current.next
                 counter += 1
 
@@ -102,3 +134,21 @@ if __name__ == '__main__':
     nums.display()
     nums.delete(9)
     nums.display()
+    nums.delete_at(0)
+    nums.display()
+    nums.delete_at(1)
+    nums.display()
+    nums.delete_at(4)
+    nums.display()
+    nums.delete_at(3)
+    nums.display()
+    nums.delete_at(2)
+    nums.display()
+    nums.delete_at(1)
+    nums.display()
+    # nums.append(6)
+    # nums.display()
+    # nums.delete_at(0)
+    # nums.display()
+    # nums.append(7)
+    # nums.display()
