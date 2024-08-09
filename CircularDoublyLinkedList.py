@@ -87,15 +87,7 @@ class CircularLinkedList:
                     self.head = self.head.next
                     self.tail.next = self.head
                     self.size -= 1
-                elif current == self.tail:
-                    prev.next = self.head
-                    self.tail = prev
-                    self.tail.next = self.head
-                    self.head.prev = self.tail
-                    # self.head.prev = self.tail
-                    # # self.tail.next = self.head
                 else:
-                    current.next.prev = prev
                     prev.next = current.next
                     self.size -=1 
                 return
@@ -128,27 +120,28 @@ if __name__ == '__main__':
         nums.append(i)
         
     nums.display()
-    nums.delete(1)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete(2)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete(9)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(0)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(1)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(4)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(3)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(2)
+    nums.delete_at(-1)
     nums.display()
-    nums.delete_at(1)
+    nums.delete_at(-1)
     nums.display()
-    # nums.append(6)
-    # nums.display()
-    # nums.delete_at(0)
-    # nums.display()
-    # nums.append(7)
-    # nums.display()
+    nums.delete_at(-1)
+    nums.display()
+    for i in range(4):
+        nums.append(i)
+    nums.display()
+        
+
