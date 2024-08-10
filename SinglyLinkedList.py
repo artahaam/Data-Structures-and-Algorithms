@@ -232,6 +232,10 @@ if __name__ == '__main__':
     numbers.delete(9)
     numbers.display()
     
+    # check if list contains a specific item
+    print(numbers.contains(3))
+    print(numbers.contains(4))
+    
     # clearing the list
     numbers.clear()
     numbers.display()
