@@ -13,7 +13,7 @@ class DoublyLinkedList:
         self.tail = None
         self.size = 0
     
-    
+    # index handling
     def index_handler(self, index):
         if index >= self.size:
             raise Exception("Index out of range")
@@ -23,18 +23,21 @@ class DoublyLinkedList:
         else:
             return index
     
+    # insert an item at front of the list
     def insert_at_first(self, data):
         node = Node(data)
         if  self.head is None:
             self.head = node
             self.tail = node
+            self.head.next = self.tail
+            self.tail.prev = self.head
         else:
             node.next = self.head
             self.head.prev = node
             self.head = node
         self.size += 1
     
-    
+    # append items into the list
     def append(self, data):
         node = Node(data)
         if self.tail:
@@ -44,14 +47,16 @@ class DoublyLinkedList:
         else:
             self.head = node
             self.tail = node
+            self.head.next = self.tail
+            self.tail.prev = self.head
         self.size += 1
         
-    
+    # insert item before a specific item
     def insert_before(self, data, target):
         node = Node(data)
         if self.head.data == target:
             node.next = self.head
-            self.head.prev = None
+            self.head.prev = node
             self.head = node
             self.size += 1
             return
@@ -86,10 +91,12 @@ class DoublyLinkedList:
         while current:
             if count == index:
                 node.next = current
-                node.prev = prev
                 current.prev = node
+                node.prev = prev
                 prev.next = node
                 if index == 0:
+                    node.next = self.head
+                    self.head.prev = node
                     self.head = node
                 self.size += 1
                 return 
@@ -132,8 +139,8 @@ class DoublyLinkedList:
             self.size -= 1
             return
         elif index == self.size-1:
-            self.tail.next = None
             self.tail = self.tail.prev
+            self.tail.next = None
             self.size -= 1
         else:
             current = self.head
@@ -143,11 +150,12 @@ class DoublyLinkedList:
                 if count == index:
                     if current == self.head:
                         self.head = current.next
+                        current.next.prev = self.head
                         self.size -= 1  
                         return 
                     elif current == self.tail:
                         self.tail.next = None
-                        self.tail = current.prev
+                        self.tail = prev 
                         self.size -= 1  
                         return 
                     else:
@@ -159,7 +167,7 @@ class DoublyLinkedList:
                 prev = current
                 current = current.next
     
-    
+    # iterating through list items
     def iter(self):
         current = self.head
         while current:
@@ -167,14 +175,14 @@ class DoublyLinkedList:
             current = current.next
             yield val    
 
-            
+    # check if an item exists in list by value
     def contains(self, data):
         for node in self.iter():
             if data == node:
                 return True
         return False
 
-
+    # display list
     def display(self):
         current = self.head
         while current:
@@ -189,48 +197,60 @@ class DoublyLinkedList:
     
 if __name__ == '__main__':
     
+    # creating a DoublyLinkedList object
     nums = DoublyLinkedList()
     
+    # appending some items to list
     for i in range(1,5):
         nums.append(i)
-        
     nums.display()
+
+    # insert at front
     nums.insert_at_first(0)
     nums.display()
-    nums.insert_at(0, 1)
+    
+    # insert before the first item
+    nums.insert_before(5, 0)
     nums.display()
-    nums.insert_at(0, 2)
+    
+    # insert before an intermediate number
+    nums.insert_before(5, 3)
     nums.display()
-    nums.insert_before('k', 0)
+    
+    # insert before the last item
+    nums.insert_before(5, 4)
     nums.display()
-    nums.insert_before('k',4)
+    
+    # insert at the front of the list
+    nums.insert_at(4, 0)
     nums.display()
-    nums.delete('k')
+    
+    # insert at the back of the list
+    nums.insert_at(3, -1)
     nums.display()
-    nums.delete('k')
+    
+
+    # delete data at front by value
+    nums.delete(4)
     nums.display()
+    
+    # delete data at back by value
+    nums.delete(4)
+    nums.display()
+    
+    # delete the item at front
     nums.delete_at(0)
     nums.display()
-    nums.delete_at(4)
+    
+    # delete the item at back
+    nums.delete_at(6)
     nums.display()
-    nums.delete_at(4)
-    nums.display()
+    
+    # delete an intermediate item   
     nums.delete_at(3)
     nums.display()
-    nums.delete_at(1)
-    nums.display()
-    nums.delete_at(1)
-    nums.display()
-    nums.delete_at(0)
-    nums.display()
-    nums.append(1)
-    nums.display()
-    nums.append(2)
-    nums.append(3)
-    nums.display()
-    nums.delete(1)
-    nums.display()
-    nums.delete(3)
-    nums.display()
-    nums.delete(2)
-    nums.display()
+    
+    # check if list contains a specific item
+    print(nums.contains(3))
+    print(nums.contains(4))
+    
