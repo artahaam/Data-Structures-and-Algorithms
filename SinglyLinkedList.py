@@ -14,6 +14,7 @@ class SinglyLinkedList:
         self.tail = None
         self.size = 0
         
+    # index handling
     def index_handler(self, index):
         if index >= self.size:
             raise Exception("Index out of range")
@@ -23,6 +24,7 @@ class SinglyLinkedList:
         else:
             return index
     
+    # append
     def append(self, data):
         node = Node(data)
         if self.tail:
@@ -33,7 +35,7 @@ class SinglyLinkedList:
             self.tail = node
         self.size += 1
         
-    
+    # insert item at a specefic index
     def insert_at(self, data, index):
         node = Node(data)
         if self.head is None:
@@ -46,25 +48,26 @@ class SinglyLinkedList:
             self.append(data)
             self.size += 1
             return
-        current = self.head
-        prev = self.head
-        count = 0
-        while current :
-            if index == 0:
-                node.next = current
-                self.head = node
-                self.size += 1
-                return 
-            elif count == index:
-                node.next = current
-                prev.next = node
-                self.size += 1 
-                return
-            count += 1
-            prev = current 
-            current = current.next
+        else:
+            current = self.head
+            prev = self.head
+            count = 0
+            while current :
+                if index == 0:
+                    node.next = current
+                    self.head = node
+                    self.size += 1
+                    return 
+                elif count == index:
+                    node.next = current
+                    prev.next = node
+                    self.size += 1 
+                    return
+                count += 1
+                prev = current 
+                current = current.next
 
-        
+    # insert item before a specific item
     def insert_before(self, data, target):
         node = Node(data)
         if self.head.data == target:
@@ -87,14 +90,14 @@ class SinglyLinkedList:
         if not flag:
             raise Exception("Target not found")
         
-        
+    # delete the front item
     def delete_first(self):
         if self.head is None:
             raise Exception("Nothing to delete")
         self.head = self.head.next
         self.size -= 1
             
-        
+    # delete the back item
     def delete_last(self):
         current = self.head 
         prev = self.head    
@@ -106,7 +109,7 @@ class SinglyLinkedList:
                 prev = current
                 current = current.next
                 
-                
+    # delete item by value
     def delete(self, data):
         current = self.head
         prev = self.head
@@ -123,10 +126,10 @@ class SinglyLinkedList:
         else:
             raise Exception("Nothing to delete")
         
-        
+    # delete item at a specific index
     def delete_at(self, index):
         index = self.index_handler(index)
-        if  index == 0 and self.size ==1:
+        if  index == 0 and self.size == 1:
             self.tail = None
             self.head = None
             self.size = 0
@@ -147,13 +150,13 @@ class SinglyLinkedList:
             current = current.next
             counter += 1
 
-        
+    # clearing the whole list
     def clear(self):
         self.tail = None
         self.head = None
         self.size = 0
 
-
+    # iterating through list items
     def iter(self):
         current = self.head
         while current:
@@ -161,14 +164,14 @@ class SinglyLinkedList:
             current = current.next
             yield val
 
-
+    # check if an item exists in list by value
     def contains(self, data):
         for node in self.iter():
             if data == node:
                 return True
         return False
     
-    
+    # display list
     def display(self):
         if self.size == 0:
             print()
@@ -185,52 +188,51 @@ class SinglyLinkedList:
 
 if __name__ == '__main__':
 
+    # creating SinglyLinkedLit object
     numbers = SinglyLinkedList()
     
-    for i in range(0, 10):
+    # appending some item to List
+    for i in range(4, 8):
         numbers.append(i)
+    numbers.display()
     
+    # inserting at front
+    numbers.insert_at(3, 0)
     numbers.display()
-    numbers.append(5)
+    
+    # inserting at back
+    numbers.insert_at(9, -1)
     numbers.display()
-    numbers.insert_before(3, 5)
+    
+    # insert intermediate 
+    numbers.insert_at(8, -2)
     numbers.display()
+    
+    # insert before item
+    numbers.insert_before(2, 3)
+    numbers.display()
+    
+    # delete front item
     numbers.delete_first()
     numbers.display()
+    
+    # delete back item
     numbers.delete_last()
     numbers.display()
-    numbers.delete(2)
+    
+    # delete first item
+    numbers.delete(3)
     numbers.display()
-    numbers.insert_at(4, -2) 
+    
+    # delete intermediate item
+    numbers.delete(5)
     numbers.display()
-    numbers.delete_at(2)
+    
+    # delete last item
+    numbers.delete(9)
     numbers.display()
-    numbers.insert_before(3, 1)
+    
+    # clearing the list
+    numbers.clear()
     numbers.display()
-    print(numbers.contains(4))
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.insert_before(0, 3)
-    numbers.display()
-    numbers.insert_at(7, -2)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
-    numbers.insert_at(1,0)
-    numbers.display()
-    numbers.delete_at(0)
-    numbers.display()
+    
