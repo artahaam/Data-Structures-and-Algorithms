@@ -76,5 +76,7 @@ s.display()
 for i in range(3):
     s.pop()
 s.display()
+
+# poping the last item
 s.pop()
 s.display()
