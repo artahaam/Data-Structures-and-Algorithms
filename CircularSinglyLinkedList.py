@@ -8,7 +8,7 @@ class Node:
         return self.data
 
 
-class CircularLinkedList:
+class CircularSinglyLinkedList:
     def __init__ (self):
         self.head = None
         self.tail = None
@@ -77,6 +77,10 @@ class CircularLinkedList:
                     self.head = self.head.next
                     self.tail.next = self.head
                     self.size -= 1
+                elif current == self.tail:
+                    prev.next = self.head
+                    self.tail = prev
+                    self.size -= 1
                 else:
                     prev.next = current.next
                     self.size -=1 
@@ -84,6 +88,7 @@ class CircularLinkedList:
             prev = current
             current = current.next
             counter += 1
+                
                 
     def insert(self, data, index):
         index = self.index_handler(index)
@@ -94,9 +99,9 @@ class CircularLinkedList:
         while current == prev or prev != self.tail:
             if counter == index:
                 if current == self.head:
-                    self.tail.next = node
                     self.head = node
                     self.head.next = current
+                    self.tail.next = self.head
                     self.size += 1
                     return
                 elif current == self.tail:
@@ -137,42 +142,50 @@ class CircularLinkedList:
                     print(current.data, end=', ')
                 current = current.next
                 counter += 1
-
+                
                 
 if __name__ == '__main__':
         
-    nums = CircularLinkedList()
+    # creating a CircularSinglyLinkedList
+    nums = CircularSinglyLinkedList()
 
-    for i in range(10):
+    # appending some item to it
+    for i in range(2,10):
         nums.append(i)
-
     nums.display()
-    nums.delete(1)
+    
+    # deleting a specific item (first)
+    nums.delete(2) 
     nums.display()
+    
+    # deleting a specific item (last)
+    nums.delete(9) 
+    nums.display()
+    
+    # deleting a specific item (intermediate)
+    nums.delete(5) 
+    nums.display()
+    
+    # deleting at specefic index (first)
+    nums.delete_at(0)
+    nums.display()
+    
+    # deleting at specefic index (last)
+    nums.delete_at(-1)
+    nums.display()
+    
+    # deleting at specefic index (intermediate)
     nums.delete_at(1)
     nums.display()
-    nums.insert(10, 0)
+    
+    # insert at specific index (first)
+    nums.insert(3, 0)
     nums.display()
-    nums.insert(10, 8)
+
+    # insert at specific index (last)
+    nums.insert(6, -1)
     nums.display()
-    nums.insert(10, 9)
-    nums.display()
-    nums.insert(10, 4)
-    nums.display()
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.display()
-    nums.append(1)
+    
+    # insert at specific index (intermediate)
+    nums.insert(5, 2)
     nums.display()
