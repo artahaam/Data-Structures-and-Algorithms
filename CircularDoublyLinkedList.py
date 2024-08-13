@@ -96,7 +96,6 @@ class CircularLinkedList:
             counter += 1
 
 
-
     def display(self):
         if self.size == 0:
             print()
@@ -115,33 +114,34 @@ class CircularLinkedList:
 
 if __name__ == '__main__':
     
+    # create a CircularLinkedList object
     nums = CircularLinkedList()
-    for i in range(10):
-        nums.append(i)
-        
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    nums.delete_at(-1)
-    nums.display()
-    for i in range(4):
+    
+    # appending some items to it
+    for i in range(2,10):
         nums.append(i)
     nums.display()
         
-
+    # deleting the first object
+    nums.delete(2)
+    nums.display()
+    
+    # deleting the last object
+    nums.delete(9)
+    nums.display()
+    
+    # deleting an intermediate object
+    nums.delete(5)
+    nums.display()
+    
+    # deleting at a specific index (first)
+    nums.delete_at(0)
+    nums.display()
+    
+    # deleting at a specific index (last)
+    nums.delete_at(-1)
+    nums.display()
+    
+    # deleting at a specific index (intermediate)
+    nums.delete_at(1)
+    nums.display()
