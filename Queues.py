@@ -4,7 +4,7 @@ class ListQueue:
         self.items = []
         self.front = self.rear = 0
         self.size = size
-        
+    
     
     def enqueue(self, data):
         if self.size == self.rear:
@@ -12,8 +12,16 @@ class ListQueue:
         else:
             self.items.insert(0, data)
             self.front += 1
+            
     
-
+        
+    def dequeue(self):
+        if self.front == self.rear:
+            raise Exception("Queue is empty")
+        else:
+            data = self.items.pop()
+            self.front -= 1
+        return data
         
 
     
