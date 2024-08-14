@@ -14,7 +14,6 @@ class ListQueue:
             self.front += 1
             
     
-        
     def dequeue(self):
         if self.front == self.rear:
             raise Exception("Queue is empty")
@@ -23,8 +22,13 @@ class ListQueue:
             self.front -= 1
         return data
         
+    
+    def count(self):
+        return self.front
 
     
+    def display(self):
+        print(*self.items)
     
     
 # Linkedlist-based Queue
@@ -42,3 +46,21 @@ class Queue:
         self.count = 0
         
 # Stack-based Queues
+
+
+# creating a ListQueue object
+listqueue = ListQueue(10)
+
+# equeue some items to the queue
+for i in range(6):
+    listqueue.enqueue(i)
+
+listqueue.display()
+
+# dequeue some items from the queue
+for i in range(3):
+    listqueue.dequeue()
+    listqueue.display()
+    
+# printing the number of items in the queue
+print(listqueue.count())
