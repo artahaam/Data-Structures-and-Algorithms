@@ -137,7 +137,7 @@ class CircularSinglyLinkedList:
             counter = 0
             while  counter < self.size:
                 if current.next == self.head:
-                    print(current.data)
+                    print(current.data, end='\n')
                 else:
                     print(current.data, end=', ')
                 current = current.next

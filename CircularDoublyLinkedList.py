@@ -145,12 +145,11 @@ class CircularDoublyLinkedList:
             counter = 0
             while  counter < self.size:
                 if current.next == self.head:
-                    print(str(current.data))
+                    print(current.data, end='\n')
                 else:
                     print(current.data, end=', ')
                 current = current.next
                 counter += 1
-        print(nums.tail.data)
 
 
 if __name__ == '__main__':

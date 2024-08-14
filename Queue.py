@@ -89,7 +89,6 @@ listqueue = ListQueue()
 # equeue some items to the queue
 for i in range(6):
     listqueue.enqueue(i)
-
 listqueue.display()
 
 # dequeue some items from the queue

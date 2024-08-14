@@ -184,16 +184,17 @@ class DoublyLinkedList:
 
     # display list
     def display(self):
+        if self.size == 0:
+            print()
+            return
         current = self.head
         while current:
             if current.next == None:
-                print(current.data)
+                print(current.data, end='\n')
             else:
                 print(current.data, end=', ')
             current = current.next            
-        if self.size == 0:
-            print()
-        
+
     
 if __name__ == '__main__':
     

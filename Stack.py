@@ -19,7 +19,6 @@ class Stack:
         else:
             self.top = node
             self.top.next = None
-            
         self.size += 1
         
         
