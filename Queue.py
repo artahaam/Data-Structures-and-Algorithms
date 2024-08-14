@@ -66,6 +66,10 @@ class Queue:
             self.size -= 1
     
 
+    def clear(self):
+        self.__init__()
+        
+    
     def display(self):
         if self.size == 0:
             print()
@@ -117,4 +121,6 @@ queue.display()
 queue.dequeue()
 queue.display()
 queue.dequeue()
+queue.display()
+queue.clear()
 queue.display()
