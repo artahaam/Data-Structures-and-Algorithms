@@ -80,11 +80,8 @@ class Queue:
             count -= 1
         
         
-# Stack-based Queues
 
-
-
-                #ListQueue
+#-------------------- ListQueue --------------------
 
 # creating a ListQueue object
 listqueue = ListQueue()
@@ -105,7 +102,7 @@ print(listqueue.count())
 
 
 
-                # LinkedListQueue
+#-------------------- LinkedListQueue --------------------
 
 # creating a Queue object
 queue = Queue()
