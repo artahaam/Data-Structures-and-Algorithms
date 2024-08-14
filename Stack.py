@@ -40,18 +40,20 @@ class Stack:
             return self.top.data
         else:
             raise Exception("empty Stack")
-            
+    
+    
+    def clear(self):
+        self.__init__()
+
 
     def display(self):
         current = self.top
         while current:
-            print(current.data, end=', ')
             if current.next == None:
-                print('\r')
-                break
+                print(current.data, end='\n')
+            else:
+                print(current.data, end=', ')
             current = current.next
-        else:
-            print()
 
     
 
@@ -59,7 +61,7 @@ class Stack:
 s = Stack()
 
 # pushing some items to the Stack
-for i in range(5):
+for i in range(10):
     s.push(i)
 s.display()
 
@@ -78,4 +80,7 @@ s.display()
 
 # poping the last item
 s.pop()
+s.display()
+
+s.clear()
 s.display()
