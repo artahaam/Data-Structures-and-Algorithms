@@ -85,42 +85,43 @@ class Queue:
         
         
 
-#-------------------- ListQueue --------------------
+if __name__ == '__main__':
+    #-------------------- ListQueue --------------------
 
-# creating a ListQueue object
-listqueue = ListQueue()
+    # creating a ListQueue object
+    listqueue = ListQueue()
 
-# equeue some items to the queue
-for i in range(6):
-    listqueue.enqueue(i)
-listqueue.display()
-
-# dequeue some items from the queue
-for i in range(3):
-    listqueue.dequeue()
+    # equeue some items to the queue
+    for i in range(6):
+        listqueue.enqueue(i)
     listqueue.display()
-    
-# printing the number of items in the queue
-print(listqueue.count())
+
+    # dequeue some items from the queue
+    for i in range(3):
+        listqueue.dequeue()
+        listqueue.display()
+        
+    # printing the number of items in the queue
+    print(listqueue.count())
 
 
 
-#-------------------- LinkedListQueue --------------------
+    #-------------------- LinkedListQueue --------------------
 
-# creating a Queue object
-queue = Queue()
+    # creating a Queue object
+    queue = Queue()
 
-# enqueue some item
-for i in range(5):
-    queue.enqueue(i)
-queue.display()
+    # enqueue some item
+    for i in range(5):
+        queue.enqueue(i)
+    queue.display()
 
-# dequeue some item
-queue.dequeue()
-queue.display()
-queue.dequeue()
-queue.display()
-queue.dequeue()
-queue.display()
-queue.clear()
-queue.display()
+    # dequeue some item
+    queue.dequeue()
+    queue.display()
+    queue.dequeue()
+    queue.display()
+    queue.dequeue()
+    queue.display()
+    queue.clear()
+    queue.display()

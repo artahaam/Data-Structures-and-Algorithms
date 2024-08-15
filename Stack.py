@@ -56,31 +56,31 @@ class Stack:
             current = current.next
 
     
+if __name__ == '__main__':
+    # creating a Stack object            
+    s = Stack()
 
-# creating a Stack object            
-s = Stack()
+    # pushing some items to the Stack
+    for i in range(10):
+        s.push(i)
+    s.display()
 
-# pushing some items to the Stack
-for i in range(10):
-    s.push(i)
-s.display()
-
-# pop some items
-s.pop()
-s.display()
-
-# getting the top item data
-print(s.peek())
-
-s.display()
-
-for i in range(3):
+    # pop some items
     s.pop()
-s.display()
+    s.display()
 
-# poping the last item
-s.pop()
-s.display()
+    # getting the top item data
+    print(s.peek())
 
-s.clear()
-s.display()
+    s.display()
+
+    for i in range(3):
+        s.pop()
+    s.display()
+
+    # poping the last item
+    s.pop()
+    s.display()
+
+    s.clear()
+    s.display()
