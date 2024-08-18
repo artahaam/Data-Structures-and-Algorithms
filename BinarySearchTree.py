@@ -15,8 +15,10 @@ class Tree:
         self.root = None
     
     
-    def insert(self, data):
+    def insert(self, data, root=1):
         node = Node(data)
+        if root == 1:
+            root = self.root
         if self.root is None:
             self.root = node
         else:
@@ -48,10 +50,14 @@ class Tree:
                     if current == self.root:
                         left_subtree = current.left
                         self.root = current.right
-                        try:
-                            self.root.left = left_subtree
-                        except:
-                            pass
+                        current = current.right
+                        while current.left:
+                            current = current.left
+                        current.left = left_subtree
+                        # try:
+                        #     self.root.left = left_subtree
+                        # except:
+                        #     pass
                         return
                     
                     # if target node is a leaf 
@@ -64,22 +70,31 @@ class Tree:
                     
                     # if target node is an internal node
                     else: 
-                        if current.right:
+                        if current.right and not current.left:
                             left_subtree = current.left
                             if child == 'r':
                                 parent.right = current.right
-                                parent.right.left = left_subtree
                             else:
                                 parent.left = current.right
-                                parent.right.left = left_subtree
+                            parent.right.left = left_subtree
                             return
-                        else:
+                        elif current.left and not current.right:
                             if child == 'r':
                                 parent.right = current.left
                             else:
                                 parent.left = current.left
                             return 
-                        
+                        else:
+                            if child == 'r':
+                                parent.right = current.right
+                            else:
+                                parent.left = current.right
+                            left_subtree = current.left
+                            current = current.right
+                            while current.left:
+                                current = current.left
+                            current.left = left_subtree
+                            return
                 elif data < current.data:
                     parent = current
                     current = current.left
@@ -155,75 +170,63 @@ class Tree:
     
 
 if __name__ == '__main__':
-    tree1 = Tree()
-    tree1.insert(5)
-    tree1.insert(1)
-    tree1.insert(3)
-    tree1.insert(2)
-    tree1.insert(4)
-    tree1.insert(6)
-    tree1.insert(8)
-    tree1.insert(7)
-    tree1.insert(9)
-    tree1.insert(10)
+    # creating a Tree object
+    tree = Tree()
+    tree.insert(4)
+    tree.insert(1)
+    tree.insert(3)
+    tree.insert(2)
+    tree.insert(6)
+    tree.insert(7)
+    tree.insert(5)
+    tree.insert(8)
+    tree.insert(9)
+    tree.insert(10)
 
-    print('*'*11 + ' traversal ' + '*'*11)
-    print('pre-order: ')
-    tree1.pre_order()
-    print('\n')
-    print('in-order: ')
-    tree1.in_order()
-    print('\n')
-    print('post-order: ')
-    tree1.post_order()
-    print()
-    print('*'*34, end='\n')
-
-    print("search wether tree contains specific data")
-    print(tree1.search(1))
-    print(tree1.search(2))
-    print(tree1.search(5))
-    print(tree1.search(10))
-    print(tree1.search(7))
-    print(tree1.search(100))
-    print('\n') 
-    
-    print(tree1.find_min())
-    print(tree1.find_max())
-    print()
-    # delete the root
-    tree1.delete(5)
-    tree1.pre_order()
-    print()
-
-    # delete a leaf
-    tree1.delete(2)
-    tree1.pre_order()
+    # delete the root node
+    tree.delete(4)
+    tree.pre_order()
     print()
 
     # delete an internal node
-    tree1.delete(8)
-    tree1.pre_order()
+    tree.delete(5)
+    tree.pre_order()
     print()
+    
+    # delete a leaf node
+    tree.delete(2)
+    tree.pre_order()
+    print()
+    
+    # tree traversal
+    print('*'*11 + ' traversal ' + '*'*11)
+    print('pre-order: ')
+    tree.pre_order()
+    print('\n')
+    print('in-order: ')
+    tree.in_order()
+    print('\n')
+    print('post-order: ')
+    tree.post_order()
+    print()
+    print('*'*34, end='\n')
 
-
-    tree1.delete(1)
-    tree1.pre_order()
-    print()
-    tree1.delete(3)
-    tree1.pre_order()
-    print()
-    tree1.delete(4)
-    tree1.pre_order()
-    print()
-    tree1.delete(6)
-    tree1.pre_order()
-    print()
-    tree1.delete(9)
-    tree1.pre_order()
-    print()
-    print(tree1.root.data)
-    tree1.delete(10)
-    tree1.pre_order()
-    print()
-
+    # search in tree
+    print("search in tree")
+    print(tree.search(1))
+    print(tree.search(0))
+    print(tree.search(2))
+    print(tree.search(5))
+    print(tree.search(10))
+    print(tree.search(7))
+    print(tree.search(100))
+    print('\n') 
+    
+    # finding the min node
+    print(tree.find_min())
+    
+    # finding the max node
+    print(tree.find_max())
+    
+    
+    
