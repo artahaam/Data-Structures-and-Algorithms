@@ -104,6 +104,20 @@ class Tree:
 
             if current == None:
                 return False
+
+
+    def find_min(self):
+        current = self.root
+        while current.left:
+                current = current.left
+        return current.data
+    
+    
+    def find_max(self):
+        current = self.root
+        while current.right:
+            current = current.right
+        return current.data
     
     
     def in_order(self, root=1):
@@ -135,6 +149,11 @@ class Tree:
         self.post_order(root.right)
         print(root, end=', ')
         
+
+
+
+    
+
 if __name__ == '__main__':
     tree1 = Tree()
     tree1.insert(5)
@@ -169,6 +188,9 @@ if __name__ == '__main__':
     print(tree1.search(100))
     print('\n') 
     
+    print(tree1.find_min())
+    print(tree1.find_max())
+    print()
     # delete the root
     tree1.delete(5)
     tree1.pre_order()
@@ -204,3 +226,4 @@ if __name__ == '__main__':
     tree1.delete(10)
     tree1.pre_order()
     print()
+
