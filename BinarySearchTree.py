@@ -8,23 +8,7 @@ class Node:
     def __str__(self):
         return str(self.data)
 
-        
-def in_order(root:Node):
-    if root is None:
-        return
-    in_order(root.left)
-    print(root, end=', ')
-    in_order(root.right)
-    
-    
-def pre_order(root:Node):
-    if root is None:
-        return
-    print(root, end=', ')
-    pre_order(root.left)
-    pre_order(root.right)
-    
-    
+
 
 class Tree:
     def __init__(self):
@@ -121,64 +105,102 @@ class Tree:
             if current == None:
                 return False
     
+    
+    def in_order(self, root=1):
+        if root == 1:
+            root = self.root
+        if root is None:
+            return
+        self.in_order(root.left)
+        print(root, end=', ')
+        self.in_order(root.right)
+        
+    
+    def pre_order(self, root=1):
+        if root == 1:
+            root = self.root
+        if root == None:
+            return
+        print(root, end=', ')
+        self.pre_order(root.left)
+        self.pre_order(root.right)
+        
+    
+    def post_order(self, root=1):
+        if root == 1:
+            root = self.root
+        if root == None:
+            return
+        self.post_order(root.left)
+        self.post_order(root.right)
+        print(root, end=', ')
+        
+if __name__ == '__main__':
+    tree1 = Tree()
+    tree1.insert(5)
+    tree1.insert(1)
+    tree1.insert(3)
+    tree1.insert(2)
+    tree1.insert(4)
+    tree1.insert(6)
+    tree1.insert(8)
+    tree1.insert(7)
+    tree1.insert(9)
+    tree1.insert(10)
 
-tree1 = Tree()
-tree1.insert(5)
-tree1.insert(1)
-tree1.insert(3)
-tree1.insert(2)
-tree1.insert(4)
-tree1.insert(6)
-tree1.insert(8)
-tree1.insert(7)
-tree1.insert(9)
-tree1.insert(10)
+    print('*'*11 + ' traversal ' + '*'*11)
+    print('pre-order: ')
+    tree1.pre_order()
+    print('\n')
+    print('in-order: ')
+    tree1.in_order()
+    print('\n')
+    print('post-order: ')
+    tree1.post_order()
+    print()
+    print('*'*34, end='\n')
 
-print(tree1.search(1))
-print(tree1.search(2))
-print(tree1.search(5))
-print(tree1.search(10))
-print(tree1.search(7))
-print(tree1.search(100))
+    print("search wether tree contains specific data")
+    print(tree1.search(1))
+    print(tree1.search(2))
+    print(tree1.search(5))
+    print(tree1.search(10))
+    print(tree1.search(7))
+    print(tree1.search(100))
+    print('\n') 
+    
+    # delete the root
+    tree1.delete(5)
+    tree1.pre_order()
+    print()
 
-pre_order(tree1.root)
-print()
+    # delete a leaf
+    tree1.delete(2)
+    tree1.pre_order()
+    print()
 
-# delete the root
-tree1.delete(5)
-pre_order(tree1.root)
-print()
+    # delete an internal node
+    tree1.delete(8)
+    tree1.pre_order()
+    print()
 
-# delete a leaf
-tree1.delete(2)
-pre_order(tree1.root)
-print()
 
-# delete an internal node
-tree1.delete(8)
-pre_order(tree1.root)
-print()
-
-# for i in range(1,8):
-#     tree1.delete(i)
-#     pre_order(tree1.root)
-
-tree1.delete(1)
-pre_order(tree1.root)
-print()
-tree1.delete(3)
-pre_order(tree1.root)
-print()
-tree1.delete(4)
-pre_order(tree1.root)
-print()
-tree1.delete(6)
-pre_order(tree1.root)
-print()
-tree1.delete(9)
-pre_order(tree1.root)
-print()
-print(tree1.root.data)
-tree1.delete(10)
-pre_order(tree1.root)
-print()
+    tree1.delete(1)
+    tree1.pre_order()
+    print()
+    tree1.delete(3)
+    tree1.pre_order()
+    print()
+    tree1.delete(4)
+    tree1.pre_order()
+    print()
+    tree1.delete(6)
+    tree1.pre_order()
+    print()
+    tree1.delete(9)
+    tree1.pre_order()
+    print()
+    print(tree1.root.data)
+    tree1.delete(10)
+    tree1.pre_order()
+    print()
