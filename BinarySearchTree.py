@@ -9,7 +9,6 @@ class Node:
         return str(self.data)
 
 
-
 class Tree:
     def __init__(self):
         self.root = None
@@ -45,7 +44,6 @@ class Tree:
             parent = current = self.root
             while True:
                 if data == current.data: 
-                    
                     # if target node is the root
                     if current == self.root:
                         left_subtree = current.left
@@ -54,10 +52,6 @@ class Tree:
                         while current.left:
                             current = current.left
                         current.left = left_subtree
-                        # try:
-                        #     self.root.left = left_subtree
-                        # except:
-                        #     pass
                         return
                     
                     # if target node is a leaf 
@@ -95,6 +89,7 @@ class Tree:
                                 current = current.left
                             current.left = left_subtree
                             return
+                        
                 elif data < current.data:
                     parent = current
                     current = current.left
@@ -164,10 +159,6 @@ class Tree:
         self.post_order(root.right)
         print(root, end=', ')
         
-
-
-
-    
 
 if __name__ == '__main__':
     # creating a Tree object
