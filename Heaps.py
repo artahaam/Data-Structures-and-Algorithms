@@ -38,12 +38,21 @@ class MinHeap:
                 break
 
     
-    def delete_root(self, item):
+    def delete_root(self):
+        item = self.heap[1]
+        self.heap[1] = self.heap.pop()
+        self.size -= 1
+        self.sink(1)
+        return item
         
-        pass
+        
+if __name__ =='__main__':
     
-    
-heap = MinHeap()
-for i in (1, 4, 2, 6, 3, 9, 10, 5, 7, 8):
-    heap.insert(i)
-print(heap.heap)
+    heap = MinHeap()
+    for i in (1, 4, 2, 6, 3, 9, 10, 5, 7, 8):
+        heap.insert(i)
+    print(heap.heap)
+
+    for i in range(5):
+        print(heap.delete_root())
+    print(heap.heap)
