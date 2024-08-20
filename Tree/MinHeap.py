@@ -1,6 +1,6 @@
 class MinHeap:
     def __init__(self):
-        self.heap = [0]
+        self.heap = [None]
         self.size = 0
 
     
@@ -51,10 +51,23 @@ class MinHeap:
         self.size -= 1
         self.sink(index)
         return item
-        
+    
+    
+    def sort(self):
+        unsorted = self.heap.copy()
+        size = self.size
+        sorted_list = []
+        for i in range(self.size-1):
+            sorted_list.append(self.delete_root())
+        sorted_list.append(self.heap[-1])
+        self.heap = unsorted
+        self.size = size
+        return sorted_list
+    
     
     def display(self):
         print(self.heap[1:])
+        
         
         
 if __name__ =='__main__':
@@ -62,13 +75,17 @@ if __name__ =='__main__':
     heap = MinHeap()
     for i in (10, 3, 1, 5, 4, 8, 9, 2, 6, 7):
         heap.insert(i)
-        heap.display()
-    heap.insert(0)
-    heap.display()
-    heap.insert(-1)
-    heap.display()
-
-    for i in range(5):
-        print(heap.delete_root())
+        
     heap.display()
     
+    heap.insert(5)
+    heap.display()
+    
+    heap.insert(33)
+    heap.display()
+    
+    heap.delete_root()
+    heap.display()
+    
+    print(heap.sort())
+    heap.display()
