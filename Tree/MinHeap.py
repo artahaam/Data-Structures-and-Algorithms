@@ -60,7 +60,6 @@ class MinHeap:
 if __name__ =='__main__':
     
     heap = MinHeap()
-    # for i in (1, 4, 2, 6, 3, 9, 10, 5, 7, 8):
     for i in (10, 3, 1, 5, 4, 8, 9, 2, 6, 7):
         heap.insert(i)
         heap.display()
