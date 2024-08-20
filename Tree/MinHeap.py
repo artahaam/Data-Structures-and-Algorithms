@@ -46,6 +46,7 @@ class MinHeap:
     
     
     def delete_at(self, index):
+        index += 1
         item = self.heap[index]
         self.heap[index] = self.heap.pop()
         self.size -= 1
@@ -88,4 +89,7 @@ if __name__ =='__main__':
     heap.display()
     
     print(heap.sort())
+    heap.display()
+
+    print(heap.delete_at(0))
     heap.display()
