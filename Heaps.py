@@ -20,11 +20,30 @@ class MinHeap:
         self.size += 1
         self.arrange()
     
+    
+    def min_child(self, k):
+        if (k * 2 + 1 > self.size) or (self.heap[k*2] < self.heap[k*2+1]):
+            return k * 2
+        else:
+            return k * 2 + 1
+        
+        
+    def sink(self, k):
+        while k * 2 <= self.size:
+            min_child = self.min_child(k)
+            if self.heap[k] > self.heap[min_child]:
+                self.heap[k], self.heap[min_child] = self.heap[min_child], self.heap[k]
+                k = min_child
+            else:
+                break
+
+    
+    def delete_root(self, item):
+        
+        pass
+    
+    
 heap = MinHeap()
-heap.insert(3)
-heap.insert(1)
-heap.insert(2)
-heap.insert(4)
+for i in (1, 4, 2, 6, 3, 9, 10, 5, 7, 8):
+    heap.insert(i)
 print(heap.heap)
-        
-        
