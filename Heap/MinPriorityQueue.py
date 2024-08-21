@@ -10,10 +10,14 @@ class MinPriorityQueue:
     def __init__(self):
         self.heap = MinHeap()
         self.objects = {}
+        self.keys = set()
         
         
     def instert(self, key, value):
-        node = Node(key, value)
+        if key in self.keys:
+            raise Exception("two objects can't have same priority")
+        else:
+            self.keys.add(key)
         self.objects[key] = value
         self.heap.insert(key)
     
@@ -23,16 +27,19 @@ class MinPriorityQueue:
     
     
     def display(self):
+        print(f'sort: {self.heap.sort()}')
         for key in self.heap.sort():
-            print(self.objects[key], end=', ')
+            print(key, self.objects[key], end=', ')
+        print()
 
 
 mpq = MinPriorityQueue()
 
-mpq.instert(1, 'a')
-mpq.instert(2, 'b')
-mpq.instert(3, 'c')
+mpq.instert(1, 'Reza')
+mpq.instert(3, 'Shervin')
+mpq.instert(2, 'Naser')
+mpq.instert(0, 'Maral')
 mpq.display()
+
 print(mpq.extract_min())
-mpq.display()
         
