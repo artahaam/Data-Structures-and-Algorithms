@@ -15,13 +15,24 @@ def bfs(adj, s):                            # Adj: adjacency list, s: starting v
                     parent[v] = u           # O(1) assign parent from level[-2]
                     level[-1].append(v)     # O(1) amortized, add to border
     level.pop()                             # O(1) removing the empty level 
-    return parent, level
+    return parent, level                    # returning parent and level lists
+
 
 if __name__ == '__main__':
     
     graph = dict()
-    graph['a'] = ['b', 'd']
-    graph['b'] = ['a', 'c']
-    graph['c'] = ['b', 'd']
-    graph['d'] = ['a', 'c']
-    print(bfs(graph,'a'))
+    graph['A'] = ['B', 'C']
+    graph['B'] = ['E','C', 'A']
+    graph['C'] = ['A', 'B', 'E','F']
+    graph['E'] = ['B', 'C']
+    graph['F'] = ['C']
+
+    # Turning graph to numbers
+    adj = dict()
+    equivalent = dict()
+    for key in enumerate(graph.keys()):
+        equivalent[key[1]] = key[0]
+    for key in graph.keys():
+        adj[equivalent[key]] = {equivalent[x] for x in graph[key]}
+    
+    print(bfs(adj, 0)[1])
