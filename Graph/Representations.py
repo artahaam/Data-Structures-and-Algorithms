@@ -21,3 +21,15 @@ for edge in edges:
     x = elements.index(edge[0])
     y = elements.index(edge[1])
     adj_matrix[x][y] = 1
+
+# Represent Graph with numbers instead of Letters
+adj = dict()
+equivalent = dict()
+
+for key in enumerate(graph.keys()):
+    equivalent[key[1]] = key[0]
+for key in graph.keys():
+    adj[equivalent[key]] = {equivalent[x] for x in graph[key]}
+
+print(graph)
+print(adj)
