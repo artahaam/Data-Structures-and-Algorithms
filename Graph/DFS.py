@@ -52,9 +52,10 @@ if __name__ == '__main__':
     graph['B'] = ['E','C', 'A']
     graph['C'] = ['A', 'B', 'E','F']
     graph['E'] = ['B', 'C']
-    graph['F'] = ['G', 'H']
-    graph['G'] = ['F', 'H']
-    graph['H'] = ['G', 'G']
+    graph['F'] = ['C']
+    graph['G'] = ['H', 'I']
+    graph['H'] = ['G', 'I']
+    graph['I'] = ['G', 'H']
 
     adj = dict()
     equivalent = dict()
@@ -62,5 +63,4 @@ if __name__ == '__main__':
         equivalent[key[1]] = key[0]
     for key in graph.keys():
         adj[equivalent[key]] = {equivalent[x] for x in graph[key]}
-    
     print(full_dfs(adj)[1])
