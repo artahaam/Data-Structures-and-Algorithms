@@ -1,4 +1,5 @@
 # Introduction to Algorithms: 6.006
+# Massachusetts Institute of Technology
 # Instructors: Erik Demaine, Jason Ku, and Justin Solomon
 # Recitation 9 
 
