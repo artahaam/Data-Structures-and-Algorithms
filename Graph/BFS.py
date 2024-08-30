@@ -20,6 +20,7 @@ def bfs(adj, s):                            # Adj: adjacency list, s: starting v
 
 if __name__ == '__main__':
     
+    #---------------------EX.1----------------------------------------------------
     graph = dict()
     graph['A'] = ['B', 'C']
     graph['B'] = ['E','C', 'A']
@@ -27,7 +28,6 @@ if __name__ == '__main__':
     graph['E'] = ['B', 'C']
     graph['F'] = ['C']
 
-    # Turning graph to numbers
     adj = dict()
     equivalent = dict()
     for key in enumerate(graph.keys()):
@@ -36,3 +36,22 @@ if __name__ == '__main__':
         adj[equivalent[key]] = {equivalent[x] for x in graph[key]}
     
     print(bfs(adj, 0)[1])
+
+    #---------------------EX.2----------------------------------------------------
+    graph = dict()
+    graph['A'] = ['B', 'C']
+    graph['B'] = ['E','C', 'A']
+    graph['C'] = ['A', 'B', 'E','F']
+    graph['E'] = ['B', 'C']
+    graph['F'] = ['G', 'H']
+    graph['G'] = ['F', 'H']
+    graph['H'] = ['G', 'G']
+
+    adj = dict()
+    equivalent = dict()
+    for key in enumerate(graph.keys()):
+        equivalent[key[1]] = key[0]
+    for key in graph.keys():
+        adj[equivalent[key]] = {equivalent[x] for x in graph[key]}
+    
+    print(bfs(adj)[1])
