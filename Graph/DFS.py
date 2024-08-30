@@ -1,3 +1,8 @@
+# Introduction to Algorithms: 6.006
+# Massachusetts Institute of Technology
+# Instructors: Erik Demaine, Jason Ku, and Justin Solomon
+# Recitation 10
+
 def dfs(adj, s, parent = None, order = None):           # adj: adjacency list, s: start 
     if parent is None:                                  # O(1) initialize parent list 
         parent = [None for v in adj]                    # O(V) (use hash if unlabeled) 
