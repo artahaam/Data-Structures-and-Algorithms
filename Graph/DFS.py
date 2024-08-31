@@ -19,7 +19,7 @@ def dfs(adj, s, parent = None, order = None):           # adj: adjacency list, s
 def full_dfs(adj):                                      # adj: adjacency list 
     parent = [None for v in adj]                        # O(V) (use hash if unlabeled) 
     order = []                                          # O(1) initialize order list 
-    for v in range(len(adj)):                           # O(V) loop over vertices 
+    for v in adj.keys():                           # O(V) loop over vertices 
         if parent[v] is None:                           # O(1) parent not yet assigned 
             parent[v] = v                               # O(1) assign self as parent (a root) 
             dfs(adj, v, parent, order)                  # DFS from v (BFS can also be used) 
