@@ -11,7 +11,6 @@ def dfs(adj, s, parent = None, order = None, scc = None):
         parent = [None for v in adj]
         parent[s] = s
         order = []
-        scc = []
     for v in adj[s]:
         if parent[v] is None:
             parent[v] = s
