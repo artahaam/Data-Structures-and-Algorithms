@@ -63,6 +63,7 @@ if __name__ == '__main__':
     adj = dict()
     for v in W.keys():
         adj[v] = {u for u in W[v].keys()}
+        
     print(f'adjacency dictionary -> {adj} ')
     print('-'*40 + '\n')
 
