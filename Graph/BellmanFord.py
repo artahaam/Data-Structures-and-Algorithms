@@ -16,7 +16,8 @@ def bellman_ford(adj, w, s): # Adj: adjacency list, w: weights, s: start
     for u in adj.keys():                        # Loop over all edges (u, v)
         for v in adj[u]:
             if d[v] > d[u] + w[u][v]:            # If edge relax-able, report cycle
-                raise Exception('There is a negative weight cycle!')
+                d, parent = None, None
+                return d, parent
     return d, parent
 
 
@@ -68,4 +69,3 @@ if __name__ == '__main__':
     d, parent = bellman_ford(adj, W2, 0)
     print(f'distance list -> {d}')
     print(f'parent list -> {parent}')
-    
